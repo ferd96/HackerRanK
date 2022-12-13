@@ -1,0 +1,728 @@
+{
+	"info": {
+		"_postman_id": "c7829dab-2489-4a95-a604-ea5dce68e3d4",
+		"name": "SBC-CIAM-LAB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24666303"
+	},
+	"item": [
+		{
+			"name": "Username/Password Validation",
+			"item": [
+				{
+					"name": "C1: Not Hashed Input",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.password.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"newusername\",\n        \"password\": \"Testmatkhau\",\n        \"confirmPassword\": \"\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C2: Not Match Confirm Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.password.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"newusername\",\n        \"password\": \"ieiIT1J+x/G1svPPU5RKj8PFd2OksUlaOFrT3qLiJE5zOz7CXzmZPkhYFT+BR+Ylvwz8IU8btxzzim0p0nvF0XR74p+Z6BL7UK8SBkxO4zVu5jF2viwBubmHotOEmol5dnuoLy9gsjP1rmFIzIpqEp8XrQDaGLeozdH/0BiWExYXjIRQYM7HoWH5vtqOrFysfIXvxkuIzzD/piLshj+zCdc5AWVq0bojRAGAA630s85q+SEMXjGzNZhgZW8TUtrxhFtqDcVwIvlWK4+JGeZ1ZMlHXUY9LwCulWc9RkEhGoEZiJjyzmvw6CtpCQCD6QX9j2AWkBxJAYVyfA9zF56fTg==\",\n        \"confirmPassword\": \"Pzsvh/qIHUqOzN97B8fYwobmq2vVB5ObEQRKUxP/5/Np6z5EBOeQ2XSNaBVbfg5lpYdOuGmUjokfU6nkDWujEws1rRemhsEp8jC/mqDnPL8KesRfChEpnGJ+yygC7zwUHX7y/iT+9AMWmx2z4Vi7ExG25EfeEtv5Keqc1avoyP7VlSMxbV2XT+bJ6LlvQnwUfgDCy6J+rZ/FnjSzu9GM1Zj9/rws1AdcEGyEnaW5aQjIbUI8Ml3motIbO0KjNJeOk2vDrMk82T1wFWdC8QnRvnGEVV4ZlNmvdXmT6B9eEtdUBhMSqjC6P0dZgkhPHIG9a4xeB09hsHLIy8BmRpt7Zg==\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C3: Wrong Format Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.password.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"newusername\",\n        \"password\": \"ieiIT1J+x/G1svPPU5RKj8PFd2OksUlaOFrT3qLiJE5zOz7CXzmZPkhYFT+BR+Ylvwz8IU8btxzzim0p0nvF0XR74p+Z6BL7UK8SBkxO4zVu5jF2viwBubmHotOEmol5dnuoLy9gsjP1rmFIzIpqEp8XrQDaGLeozdH/0BiWExYXjIRQYM7HoWH5vtqOrFysfIXvxkuIzzD/piLshj+zCdc5AWVq0bojRAGAA630s85q+SEMXjGzNZhgZW8TUtrxhFtqDcVwIvlWK4+JGeZ1ZMlHXUY9LwCulWc9RkEhGoEZiJjyzmvw6CtpCQCD6QX9j2AWkBxJAYVyfA9zF56fTg==\",\n        \"confirmPassword\": \"ieiIT1J+x/G1svPPU5RKj8PFd2OksUlaOFrT3qLiJE5zOz7CXzmZPkhYFT+BR+Ylvwz8IU8btxzzim0p0nvF0XR74p+Z6BL7UK8SBkxO4zVu5jF2viwBubmHotOEmol5dnuoLy9gsjP1rmFIzIpqEp8XrQDaGLeozdH/0BiWExYXjIRQYM7HoWH5vtqOrFysfIXvxkuIzzD/piLshj+zCdc5AWVq0bojRAGAA630s85q+SEMXjGzNZhgZW8TUtrxhFtqDcVwIvlWK4+JGeZ1ZMlHXUY9LwCulWc9RkEhGoEZiJjyzmvw6CtpCQCD6QX9j2AWkBxJAYVyfA9zF56fTg==\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C4: Username Existed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.password.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"trivviam-demo-1\",\n        \"password\": \"Pzsvh/qIHUqOzN97B8fYwobmq2vVB5ObEQRKUxP/5/Np6z5EBOeQ2XSNaBVbfg5lpYdOuGmUjokfU6nkDWujEws1rRemhsEp8jC/mqDnPL8KesRfChEpnGJ+yygC7zwUHX7y/iT+9AMWmx2z4Vi7ExG25EfeEtv5Keqc1avoyP7VlSMxbV2XT+bJ6LlvQnwUfgDCy6J+rZ/FnjSzu9GM1Zj9/rws1AdcEGyEnaW5aQjIbUI8Ml3motIbO0KjNJeOk2vDrMk82T1wFWdC8QnRvnGEVV4ZlNmvdXmT6B9eEtdUBhMSqjC6P0dZgkhPHIG9a4xeB09hsHLIy8BmRpt7Zg==\",\n        \"confirmPassword\": \"Pzsvh/qIHUqOzN97B8fYwobmq2vVB5ObEQRKUxP/5/Np6z5EBOeQ2XSNaBVbfg5lpYdOuGmUjokfU6nkDWujEws1rRemhsEp8jC/mqDnPL8KesRfChEpnGJ+yygC7zwUHX7y/iT+9AMWmx2z4Vi7ExG25EfeEtv5Keqc1avoyP7VlSMxbV2XT+bJ6LlvQnwUfgDCy6J+rZ/FnjSzu9GM1Zj9/rws1AdcEGyEnaW5aQjIbUI8Ml3motIbO0KjNJeOk2vDrMk82T1wFWdC8QnRvnGEVV4ZlNmvdXmT6B9eEtdUBhMSqjC6P0dZgkhPHIG9a4xeB09hsHLIy8BmRpt7Zg==\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Case 5: Success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.password.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"newusername\",\n        \"password\": \"Pzsvh/qIHUqOzN97B8fYwobmq2vVB5ObEQRKUxP/5/Np6z5EBOeQ2XSNaBVbfg5lpYdOuGmUjokfU6nkDWujEws1rRemhsEp8jC/mqDnPL8KesRfChEpnGJ+yygC7zwUHX7y/iT+9AMWmx2z4Vi7ExG25EfeEtv5Keqc1avoyP7VlSMxbV2XT+bJ6LlvQnwUfgDCy6J+rZ/FnjSzu9GM1Zj9/rws1AdcEGyEnaW5aQjIbUI8Ml3motIbO0KjNJeOk2vDrMk82T1wFWdC8QnRvnGEVV4ZlNmvdXmT6B9eEtdUBhMSqjC6P0dZgkhPHIG9a4xeB09hsHLIy8BmRpt7Zg==\",\n        \"confirmPassword\": \"Pzsvh/qIHUqOzN97B8fYwobmq2vVB5ObEQRKUxP/5/Np6z5EBOeQ2XSNaBVbfg5lpYdOuGmUjokfU6nkDWujEws1rRemhsEp8jC/mqDnPL8KesRfChEpnGJ+yygC7zwUHX7y/iT+9AMWmx2z4Vi7ExG25EfeEtv5Keqc1avoyP7VlSMxbV2XT+bJ6LlvQnwUfgDCy6J+rZ/FnjSzu9GM1Zj9/rws1AdcEGyEnaW5aQjIbUI8Ml3motIbO0KjNJeOk2vDrMk82T1wFWdC8QnRvnGEVV4ZlNmvdXmT6B9eEtdUBhMSqjC6P0dZgkhPHIG9a4xeB09hsHLIy8BmRpt7Zg==\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Validate Profile",
+			"item": [
+				{
+					"name": "Case 1: Valid Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.profile.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"phoneNumber\": \"0545684411\",\n        \"firstName\": \"Nguyen\",\n        \"lastName\": \"Van Bay\",\n        \"dob\": \"10-10-1990\",\n        \"emailAddress\": \"BayNV15@fsoft.com\"\n    }\n      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C2: Invalid Null Input",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.profile.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"phoneNumber\": \"0545684411\",\n        \"firstName\": null,\n        \"lastName\": \"Van Bay\",\n        \"dob\": \"10-10-1990\",\n        \"emailAddress\": \"BayNV15@fsoft.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C3: Invalid Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.profile.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"phoneNumber\": \"0545684411\",\n        \"firstName\": \"Nguyen\",\n        \"lastName\": \"Van Bay\",\n        \"dob\": \"10-10-1990\",\n        \"emailAddress\": \"BayNV15@fsoft.com....\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C3: Invalid Email Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.profile.validation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"phoneNumber\": \"0545684411\",\n        \"firstName\": \"Nguyen\",\n        \"lastName\": null,\n        \"dob\": \"10-10-1990\",\n        \"emailAddress\": \"6aomgds@gmail.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/validate-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"validate-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activate User",
+			"item": [
+				{
+					"name": "User Activation (Keycloak provider)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.activation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"nguyen-van-bay-15-xoacainaydi1\",\n        \"password\": \"MIWhFpUB5p0O32j4RLPZJQrPUF2SiBgBrg/S9aZbxi84HJUyHc/zhDNhP6tRSjurPKZ28yjITrvrOW1gs8of9yn2heq5O68jrRnvXPXebxxmop2K4skq5U9oHFuM82e/cJDp7VPVCA+JH85PTgTiBebyldvm3I2r2IulILWg43ZtjJkCNRpx81yefxhYXp+rYVw3t84afF8V5JWR4HoO57BmNY/QaRbvqU1w2zVnEWGN6kXvtT5twzKYyXFtJ9qQJkw3zPEvfI3cGsge4FVCNW8Q7u9y5AExNQvRQupgefuR1O5EstzPI58MmecIQz7ewwQmWEz0x1RCz9zwzXKjlg==\",\n        \"firstName\": \"Nguyen\",\n        \"lastName\": \"Van Bay\",\n        \"phoneNumber\": \"0328866477\",\n        \"dob\": \"10-10-1990\",\n       \"emailAddress\": \"baynv15@fpt.com.vn\",\n        \"skipProfile\": \"false\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/activation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"activation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Activation (Keycloak provider) Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "smc-os-device",
+								"type": "text",
+								"value": "web:xxx123:10.1:web:safari01"
+							},
+							{
+								"key": "smc-real-IP",
+								"type": "text",
+								"value": "10.10.0.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"@user.register.activation\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"nguyen-van-bay-15\",\n        \"password\": \"MIWhFpUB5p0O32j4RLPZJQrPUF2SiBgBrg/S9aZbxi84HJUyHc/zhDNhP6tRSjurPKZ28yjITrvrOW1gs8of9yn2heq5O68jrRnvXPXebxxmop2K4skq5U9oHFuM82e/cJDp7VPVCA+JH85PTgTiBebyldvm3I2r2IulILWg43ZtjJkCNRpx81yefxhYXp+rYVw3t84afF8V5JWR4HoO57BmNY/QaRbvqU1w2zVnEWGN6kXvtT5twzKYyXFtJ9qQJkw3zPEvfI3cGsge4FVCNW8Q7u9y5AExNQvRQupgefuR1O5EstzPI58MmecIQz7ewwQmWEz0x1RCz9zwzXKjlg==\",\n        \"firstName\": null,\n        \"lastName\": null,\n        \"phoneNumber\": null,\n        \"dob\": null,\n       \"emailAddress\": null,\n        \"skipProfile\": \"true\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9903/meta/user/activation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9903",
+							"path": [
+								"meta",
+								"user",
+								"activation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "smc-os-device",
+						"type": "text",
+						"value": "web:xxx123:10.1:web:safari01"
+					},
+					{
+						"key": "smc-real-IP",
+						"type": "text",
+						"value": "10.10.0.1"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"@user.login\",\n    \"payload\": {\n        \"context\": {\n        },\n        \"username\": \"trivviam-demo-1\",\n        \"password\": \"trivv123\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9903/meta/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9903",
+					"path": [
+						"meta",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Acquire Keycloak Admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"\r",
+							"if(json.access_token) {\r",
+							"    pm.environment.set(\"oauthToken\", json.access_token)\r",
+							"    console.log(\"oauthToken: \", json.access_token)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "qJNlvxza0sCSxzalHPTq814zkFrJUP75",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "meta-app",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "meta-app",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9080/auth/realms/meta-tempate/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"auth",
+						"realms",
+						"meta-tempate",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"\r",
+							"if(json.access_token) {\r",
+							"    pm.environment.set(\"oauthToken\", json.access_token)\r",
+							"    console.log(\"oauthToken: \", json.access_token)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "qJNlvxza0sCSxzalHPTq814zkFrJUP75",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "meta-app",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "trivviam-demo-1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "trivv123",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "meta-app",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9080/auth/realms/meta-tempate/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"auth",
+						"realms",
+						"meta-tempate",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"\r",
+							"if(json.access_token) {\r",
+							"    pm.environment.set(\"oauthToken\", json.access_token)\r",
+							"    console.log(\"oauthToken: \", json.access_token)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/realms/meta-tempate/protocol/openid-connect/userinfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"meta-tempate",
+						"protocol",
+						"openid-connect",
+						"userinfo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
