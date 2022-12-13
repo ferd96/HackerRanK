@@ -1,0 +1,61 @@
+version: '3.4'
+
+name: scb-ciam
+services:
+  mysql:
+    container_name: scb-ciam-db
+    image: mysql:8
+    working_dir: /mysql
+    volumes:
+      - type: volume
+        source: scb-ciam-mount
+        target: /mysql/data
+    networks:
+      scb-ciam-network:
+        # ipv4_address: 172.5.0.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=keycloak
+    ports:
+      - 3306:3306
+  keycloak:
+    container_name: scb-ciam-keycloak
+    # build: ./1. Keycloak
+    image: quay.io/keycloak/keycloak:19.0.3
+    environment:
+      - KC_HEALTH_ENABLED=true
+      - KC_METRICS_ENABLED=true
+      - KC_DB=mysql
+      # - KC_DB_URL_HOST=172.5.0.2
+      - KC_DB_URL_HOST=mysql
+      # - KC_DB_URL_PORT=3306
+      - KC_DB_SCHEMA=keycloak
+      # - KC_DB_URL_PROPERTIES=?useSSL=FALSE&allowPublicKeyRetrieval=TRUE
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=123456
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=localhost
+    networks:
+      scb-ciam-network:
+        # ipv4_address: 172.5.0.3
+    network_mode: "bridge"
+    depends_on:
+      - mysql
+    command:
+      - start-dev
+    ports:
+      - 8080:8080
+volumes:
+  scb-ciam-mount:
+    name: scb-ciam-mount
+networks:
+  scb-ciam-network:
+    driver: bridge
+    name: scb-ciam-host
+    # ipam:
+    #   config:
+    #     - subnet: "172.5.0.0/16"
+    #       gateway: "172.5.0.1"
